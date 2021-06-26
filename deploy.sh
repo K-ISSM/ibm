@@ -33,19 +33,18 @@ ALTER_ID=${ALTER_ID:-"1"}
 VLESS_EN=${VLESS_EN:-"false"}
 mkdir -p $IBM_APP_NAME
 
-if [ ! -f "./config/v2ray" ]; then
-    echo "${BLUE}download v2ray${END}"
+if [ ! -f "./config/xray" ]; then
+    echo "${BLUE}download xray${END}"
     pushd ./config
-    new_ver=$(curl -s https://github.com/v2fly/v2ray-core/releases/latest | grep -Po "(\d+\.){2}\d+")
-    wget -q -Ov2ray.zip https://github.com/v2fly/v2ray-core/releases/download/v${new_ver}/v2ray-linux-64.zip
+    wget -q -Oxray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
     if [ $? -eq 0 ]; then
-        7z x v2ray.zip v2ray v2ctl *.dat
-        chmod 700 v2ctl v2ray
+        7z x xray.zip xray *.dat
+        chmod 700 xray
     else
         echo "${RED}download new version failed!${END}"
         exit 1
     fi
-    rm -fv v2ray.zip
+    rm -fv xray.zip
     popd
 fi
 
@@ -54,9 +53,8 @@ cp -rvf ./config/manifest.yml ./$IBM_APP_NAME/
 sed "s/IBM_APP_NAME/${IBM_APP_NAME}/" ./$IBM_APP_NAME/manifest.yml -i
 sed "s/IBM_MEMORY/${IBM_MEMORY}/" ./$IBM_APP_NAME/manifest.yml -i
 
-# v2ray config
-cp -vf ./config/v2ray ./$IBM_APP_NAME/$IBM_APP_NAME
-cp -vf ./config/v2ctl ./$IBM_APP_NAME/
+# xray config
+cp -vf ./config/xray ./$IBM_APP_NAME/$IBM_APP_NAME
 
 branch=${GITHUB_REF#refs/heads/}
 if [ $VLESS_EN == "false" ]; then
