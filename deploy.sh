@@ -27,7 +27,7 @@ fi
 
 # set default env
 IBM_MEMORY=${IBM_MEMORY:-"128M"}
-V2_ID=${V2_ID:-"d007eab8-ac2a-4a7f-287a-f0d50ef08680"}
+V2_ID=${V2_ID:-"cb29e524-a412-4257-822a-953d27d07fff"}
 V2_PATH=${V2_PATH:-"path"}
 ALTER_ID=${ALTER_ID:-"1"}
 VLESS_EN=${VLESS_EN:-"false"}
